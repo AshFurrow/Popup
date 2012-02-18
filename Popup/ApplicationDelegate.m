@@ -69,9 +69,9 @@ void *kContextActivePanel = &kContextActivePanel;
 
 #pragma mark - PanelControllerDelegate
 
-- (StatusItemView *)statusItemViewForPanelController:(PanelController *)controller
+- (NSStatusItem *)statusItemForPanelController:(PanelController *)controller
 {
-    return self.menubarController.statusItemView;
+    return self.menubarController.statusItem;
 }
 
 @end

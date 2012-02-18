@@ -1,6 +1,3 @@
-#define STATUS_ITEM_VIEW_WIDTH 24.0
-
-#pragma mark -
 
 @class StatusItemView;
 

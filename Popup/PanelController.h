@@ -1,5 +1,4 @@
 #import "BackgroundView.h"
-#import "StatusItemView.h"
 
 @class PanelController;
 
@@ -7,7 +6,7 @@
 
 @optional
 
-- (StatusItemView *)statusItemViewForPanelController:(PanelController *)controller;
+- (NSStatusItem *)statusItemForPanelController:(PanelController *)controller;
 
 @end
 

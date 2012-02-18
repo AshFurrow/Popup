@@ -1,7 +1,5 @@
 #import "PanelController.h"
 #import "BackgroundView.h"
-#import "StatusItemView.h"
-#import "MenubarController.h"
 
 #define OPEN_DURATION .15
 #define CLOSE_DURATION .1
@@ -170,15 +168,16 @@
     NSRect screenRect = [[window screen] frame];
     NSRect statusRect = NSZeroRect;
     
-    StatusItemView *statusItemView = nil;
-    if ([self.delegate respondsToSelector:@selector(statusItemViewForPanelController:)])
+    NSStatusItem *statusItem = nil;
+    if ([self.delegate respondsToSelector:@selector(statusItemForPanelController:)])
     {
-        statusItemView = [self.delegate statusItemViewForPanelController:self];
+        statusItem = [self.delegate statusItemForPanelController:self];
     }
     
-    if (statusItemView)
+    if (statusItem)
     {
-        statusRect = statusItemView.globalRect;
+        statusRect = [statusItem.view frame];
+        statusRect.origin = [statusItem.view.window convertBaseToScreen:statusRect.origin];
         statusRect.origin.y = NSMinY(statusRect) - NSHeight(statusRect);
     }
     else
