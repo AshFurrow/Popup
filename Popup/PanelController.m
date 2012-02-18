@@ -168,11 +168,7 @@
     NSRect screenRect = [[window screen] frame];
     NSRect statusRect = NSZeroRect;
     
-    NSStatusItem *statusItem = nil;
-    if ([self.delegate respondsToSelector:@selector(statusItemForPanelController:)])
-    {
-        statusItem = [self.delegate statusItemForPanelController:self];
-    }
+    NSStatusItem *statusItem = [self.delegate statusItemForPanelController:self];
     
     if (statusItem)
     {
@@ -182,7 +178,9 @@
     }
     else
     {
-        statusRect.size = NSMakeSize(STATUS_ITEM_VIEW_WIDTH, [[NSStatusBar systemStatusBar] thickness]);
+        //2 doesn't actually matter - this will just center the panel horizontally beneath the menu bar.
+        CGFloat fakeWidth = 2.0f;
+        statusRect.size = NSMakeSize(fakeWidth, [[NSStatusBar systemStatusBar] thickness]);
         statusRect.origin.x = roundf((NSWidth(screenRect) - NSWidth(statusRect)) / 2);
         statusRect.origin.y = NSHeight(screenRect) - NSHeight(statusRect) * 2;
     }
